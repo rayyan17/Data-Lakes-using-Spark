@@ -101,3 +101,17 @@ def process_log_data(spark, input_data, output_data):
     # write songplays table to parquet files 
     songplays_table.write.parquet(output_data + "songplays.parquet", mode="overwrite")
 
+
+def main():
+    """Project Entry Points"""
+    spark = create_spark_session()
+    input_data = "s3a://udacity-sparkify-rk/"
+    output_data = "s3a://udacity-sparkify-output/"
+    
+    process_song_data(spark, input_data, output_data)    
+    process_log_data(spark, input_data, output_data)
+
+
+if __name__ == "__main__":
+    main()
+
